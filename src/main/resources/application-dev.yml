@@ -1,0 +1,13 @@
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:localhost.p12
+    key-store-type: PKCS12
+    key-store-password: nada
+    key-alias: localhost
+  http2:
+    enabled: true
+
+logging:
+  level:
+    root: DEBUG

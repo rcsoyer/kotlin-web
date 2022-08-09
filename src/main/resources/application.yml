@@ -1,0 +1,26 @@
+server:
+  shutdown: graceful
+  servlet:
+    encoding:
+      force: true
+  forward-headers-strategy: framework
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: kotlin-web
+  lifecycle:
+    timeout-per-shutdown-phase: 80s
+  cache:
+    cache-names: sourceDataFileCache, imageFeatureCache
+    caffeine:
+      spec: maximumSize=10000,expireAfterWrite=6h
+
+logging:
+  level:
+    root: INFO
+
+source:
+  data:
+    file: /static/source-data.json
