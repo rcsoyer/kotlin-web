@@ -34,7 +34,7 @@ class SourceDataService(
             }
 
     @Cacheable(IMAGE_FEATURE_CACHE)
-    fun listImagesById(): Map<UUID?, String?> =
+    fun listImages(): Map<UUID?, String?> =
         sourceDataFile
             .inputStream
             .use {

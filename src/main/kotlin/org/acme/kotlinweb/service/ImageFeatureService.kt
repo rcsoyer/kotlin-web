@@ -12,7 +12,7 @@ import java.util.UUID
 class ImageFeatureService(private val sourceDataService: SourceDataService) {
     fun getImageBy(featureId: UUID): Resource =
         sourceDataService
-            .listImagesById()
+            .listImages()
             .getOrElse(featureId) { throw ResponseStatusException(NOT_FOUND, "Image not found") }
             .let {
                 val image = Base64.getDecoder().decode(it)
