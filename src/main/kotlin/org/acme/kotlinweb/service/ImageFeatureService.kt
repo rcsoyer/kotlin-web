@@ -10,7 +10,7 @@ import java.util.UUID
 
 @Service
 class ImageFeatureService(private val sourceDataService: SourceDataService) {
-    fun getImage(featureId: UUID): Resource =
+    fun getImageBy(featureId: UUID): Resource =
         sourceDataService
             .listImagesById()
             .getOrElse(featureId) { throw ResponseStatusException(NOT_FOUND, "Image not found") }

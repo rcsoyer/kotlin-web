@@ -29,5 +29,5 @@ class FeaturesController(
             .ok()
             .contentType(IMAGE_PNG)
             .header(CONTENT_DISPOSITION, "attachment; filename=image.png")
-            .body(imageService.getImage(featureId))
+            .body(imageService.getImageBy(featureId))
 }
