@@ -2,7 +2,8 @@ package org.acme.kotlinweb.service
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import org.acme.kotlinweb.config.CacheConfig
+import org.acme.kotlinweb.config.CacheConfig.Companion.IMAGE_FEATURE_CACHE
+import org.acme.kotlinweb.config.CacheConfig.Companion.SOURCE_DATA_CACHE
 import org.acme.kotlinweb.service.dto.FeatureCollection
 import org.acme.kotlinweb.service.dto.FeatureImageCollection
 import org.springframework.beans.factory.annotation.Qualifier
@@ -20,7 +21,7 @@ class SourceDataService(
     @Value("\${source.data.file}") private val sourceDataFile: ClassPathResource
 ) {
 
-    @Cacheable(CacheConfig.SOURCE_DATA_CACHE)
+    @Cacheable(SOURCE_DATA_CACHE)
     fun listFeatures(): List<FeatureCollection.Feature> =
         sourceDataFile
             .inputStream
@@ -32,7 +33,7 @@ class SourceDataService(
                 throw ResponseStatusException(INTERNAL_SERVER_ERROR, "No features found")
             }
 
-    @Cacheable(CacheConfig.IMAGE_FEATURE_CACHE)
+    @Cacheable(IMAGE_FEATURE_CACHE)
     fun listImagesById(): Map<UUID?, String?> =
         sourceDataFile
             .inputStream
